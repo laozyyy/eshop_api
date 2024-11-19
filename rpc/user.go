@@ -14,13 +14,13 @@ var userClient userservice.Client
 func init() {
 	var err error
 	userClient, err = userservice.NewClient("hello", client.WithHostPorts("117.72.72.114:20000"))
+	//userClient, err = userservice.NewClient("hello", client.WithHostPorts("0.0.0.0:8888"))
 	if err != nil {
 		log.Errorf("error: %v", err)
 	}
 }
 
 func GetOneUserByName(ctx context.Context, name string) (r *model.User, err error) {
-
 	resp, err := userClient.GetOneUserByName(ctx, name)
 	if err != nil {
 		log.Errorf("error: %v", err)
@@ -45,6 +45,9 @@ func GetOneUserById(ctx context.Context, uid string) (r *model.User, err error) 
 		log.Errorf("error: %v", err)
 		return nil, err
 	}
+	if resp.User == nil {
+		return nil, nil
+	}
 	return &model.User{
 		UID:      resp.User.Uid,
 		Name:     resp.User.Name,
@@ -54,6 +57,7 @@ func GetOneUserById(ctx context.Context, uid string) (r *model.User, err error) 
 		Role:     int(resp.User.Role),
 	}, nil
 }
+
 func InsertOneUser(ctx context.Context, user *model.User) (err error) {
 	uuser := &user_info.User{
 		Uid:      user.UID,
