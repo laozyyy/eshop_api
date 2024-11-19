@@ -13,7 +13,7 @@ var userClient userservice.Client
 
 func init() {
 	var err error
-	userClient, err = userservice.NewClient("hello", client.WithHostPorts("0.0.0.0:8888"))
+	userClient, err = userservice.NewClient("hello", client.WithHostPorts("0.0.0.0:20000"))
 	if err != nil {
 		log.Errorf("error: %v", err)
 	}
