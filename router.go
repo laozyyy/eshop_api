@@ -14,4 +14,10 @@ func initRouter(r *gin.Engine) {
 
 	homeGroup := r.Group("/api/v1/home")
 	homeGroup.GET("/category/head", handler.HandleGetTags)
+
+	main := r.Group("/api/v1/main")
+	{
+		main.GET("/get_sku/:sku", handler.HandleGetOneSku)
+		main.POST("/mget", handler.HandleMGetSku)
+	}
 }
