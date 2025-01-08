@@ -50,13 +50,8 @@ jobs:
           password: zhongyiming2003
 
       - name: 构建镜像
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: false
-          tags: registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
+        run:
+          docker build -t registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api .
 
       - name: 连接阿里云
         run: |
