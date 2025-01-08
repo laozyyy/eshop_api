@@ -34,3 +34,15 @@ type TagRespDTO struct {
 	Msg    string `json:"msg"`
 	Result []Tag  `json:"result"`
 }
+
+type GetSkuRespDTO struct {
+	Code int             `json:"code"`
+	Info string          `json:"info"`
+	Data *model.GoodsSku `json:"data,omitempty"`
+}
+
+type MGetSkuRespDTO struct {
+	Code int               `json:"code"`
+	Info string            `json:"info"`
+	Data []*model.GoodsSku `json:"data,omitempty"`
+}

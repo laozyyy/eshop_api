@@ -7,10 +7,11 @@ import (
 	"eshop_api/model/resp"
 	"eshop_api/rpc"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
 )
 
 func HandleLogin(ctx *gin.Context) {

@@ -6,6 +6,7 @@ import (
 	"eshop_api/kitex_gen/eshop/user_info/userservice"
 	"eshop_api/log"
 	"eshop_api/model"
+
 	"github.com/cloudwego/kitex/client"
 )
 
