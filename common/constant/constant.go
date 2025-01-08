@@ -1,7 +1,7 @@
 package constant
 
 const (
-	Success = iota + 200
+	Success = iota + 1000
 	DuplicatedUser
 	UserNotFound
 	WrongPassword
