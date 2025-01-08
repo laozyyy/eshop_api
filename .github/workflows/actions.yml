@@ -61,7 +61,7 @@ jobs:
       - name: 连接阿里云
         run: |
           docker login -u aliyun2526497059 -p zhongyiming2003 registry.cn-hangzhou.aliyuncs.com
-          docker push registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api
+          docker push registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api:latest;
 
       # 将缓存移动到新位置
       - name: Move cache
