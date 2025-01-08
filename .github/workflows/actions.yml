@@ -30,14 +30,7 @@ jobs:
         with:
           go-version: '1.20'  # 使用你需要的 Go 版本
 
-      # 添加 Docker 层缓存
-      - name: Cache Docker layers
-        uses: actions/cache@v3
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
+      
 
       # 设置 Docker Buildx
       - name: Set up Docker Buildx
@@ -52,6 +45,15 @@ jobs:
       - name: 构建镜像
         run:
           docker build -t registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api .
+          
+      # 添加 Docker 层缓存
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: 连接阿里云
         run: |

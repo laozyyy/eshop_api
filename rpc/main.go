@@ -4,7 +4,6 @@ import (
 	"context"
 	"eshop_api/kitex_gen/eshop/home"
 	"eshop_api/kitex_gen/eshop/home/goodsservice"
-	"eshop_api/kitex_gen/eshop/user_info/userservice"
 	"eshop_api/log"
 	"eshop_api/model"
 
@@ -15,7 +14,7 @@ var goodsClient goodsservice.Client
 
 func init() {
 	var err error
-	userClient, err = userservice.NewClient("hello", client.WithHostPorts("117.72.72.114:20001"))
+	goodsClient, err = goodsservice.NewClient("hello", client.WithHostPorts("117.72.72.114:20001"))
 	if err != nil {
 		log.Errorf("error: %v", err)
 	}
