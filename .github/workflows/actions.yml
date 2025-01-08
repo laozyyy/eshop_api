@@ -58,12 +58,6 @@ jobs:
           docker login -u aliyun2526497059 -p zhongyiming2003 registry.cn-hangzhou.aliyuncs.com
           docker push registry.cn-hangzhou.aliyuncs.com/lazyyy1/eshop_api:latest;
 
-      # 将缓存移动到新位置
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mkdir -p /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   deployment:
     runs-on: ubuntu-latest
