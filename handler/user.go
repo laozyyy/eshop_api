@@ -30,7 +30,7 @@ func HandleLogin(ctx *gin.Context) {
 	}
 	if user == nil {
 		res = resp.LoginRespDTO{
-			Code: constant.Success,
+			Code: constant.UserNotFound,
 			Info: "用户不存在",
 		}
 		ctx.JSON(http.StatusOK, res)

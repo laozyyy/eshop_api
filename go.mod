@@ -1,12 +1,10 @@
 module eshop_api
 
-go 1.21.0
-
-toolchain go1.21.5
+go 1.23.0
 
 require (
 	github.com/bytedance/sonic v1.12.6
-	github.com/cloudwego/gopkg v0.1.2
+	github.com/cloudwego/gopkg v0.1.4
 	github.com/cloudwego/kitex v0.11.3
 	github.com/gin-contrib/cors v1.7.3
 	github.com/gin-gonic/gin v1.10.0

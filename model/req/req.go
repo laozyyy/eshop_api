@@ -15,3 +15,8 @@ type MGetSkuReqDTO struct {
 	PageNum  int    `json:"page_num" binding:"required"`
 	PageSize int    `json:"page_size" binding:"required"`
 }
+
+type PageReqDTO struct {
+	PageNum  int `json:"page_num" binding:"required"`
+	PageSize int `json:"page_size" binding:"required"`
+}

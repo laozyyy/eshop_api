@@ -72,3 +72,33 @@ func MGetSku(ctx context.Context, TagId string, pageSize int, pageNum int) ([]*m
 	}
 	return result, nil
 }
+
+func GetRandomSku(ctx context.Context, pageSize int, pageNum int) ([]*model.GoodsSku, error) {
+	request := home.PageRequest{
+		PageSize: int32(pageSize),
+		PageNum:  int32(pageNum),
+	}
+	resp, err := goodsClient.GetRandomSku(ctx, &request)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return nil, err
+	}
+	if resp.Sku == nil {
+		return nil, nil
+	}
+
+	result := make([]*model.GoodsSku, 0, len(resp.Sku))
+	for _, sku := range resp.Sku {
+		result = append(result, &model.GoodsSku{
+			Sku:       sku.GoodsId,
+			GoodsID:   sku.GoodsId,
+			TagID:     sku.TagId,
+			Name:      sku.Name,
+			Price:     float64(sku.Price),
+			Spec:      sku.Spec,
+			ShowPic:   sku.ShowPic[0],
+			DetailPic: sku.DetailPic[0],
+		})
+	}
+	return result, nil
+}

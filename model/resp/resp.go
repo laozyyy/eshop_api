@@ -41,7 +41,7 @@ type GetSkuRespDTO struct {
 	Data *model.GoodsSku `json:"data,omitempty"`
 }
 
-type MGetSkuRespDTO struct {
+type PageRespDTO struct {
 	Code int               `json:"code"`
 	Info string            `json:"info"`
 	Data []*model.GoodsSku `json:"data,omitempty"`

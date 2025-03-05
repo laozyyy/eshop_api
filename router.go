@@ -19,5 +19,6 @@ func initRouter(r *gin.Engine) {
 	{
 		main.GET("/get_sku/:sku", handler.HandleGetOneSku)
 		main.POST("/mget", handler.HandleMGetSku)
+		main.POST("/random", handler.HandleRandom)
 	}
 }

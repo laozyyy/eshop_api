@@ -54,11 +54,11 @@ func HandleGetOneSku(ctx *gin.Context) {
 func HandleMGetSku(ctx *gin.Context) {
 	var (
 		param req.MGetSkuReqDTO
-		res   resp.MGetSkuRespDTO
+		res   resp.PageRespDTO
 	)
 
 	if err := ctx.ShouldBindJSON(&param); err != nil {
-		res = resp.MGetSkuRespDTO{
+		res = resp.PageRespDTO{
 			Code: constant.ParamError,
 			Info: "参数错误: " + err.Error(),
 		}
@@ -68,7 +68,7 @@ func HandleMGetSku(ctx *gin.Context) {
 
 	goods, err := rpc.MGetSku(ctx.Request.Context(), param.TagID, param.PageSize, param.PageNum)
 	if err != nil {
-		res = resp.MGetSkuRespDTO{
+		res = resp.PageRespDTO{
 			Code: constant.ServerError,
 			Info: "服务器内部错误",
 		}
@@ -77,19 +77,64 @@ func HandleMGetSku(ctx *gin.Context) {
 	}
 
 	if goods == nil {
-		res = resp.MGetSkuRespDTO{
+		res = resp.PageRespDTO{
 			Code: constant.Success,
-			Info: "success",
+			Info: "无数据",
 			Data: []*model.GoodsSku{},
 		}
 		ctx.JSON(http.StatusOK, res)
 		return
 	}
 
-	res = resp.MGetSkuRespDTO{
+	res = resp.PageRespDTO{
 		Code: constant.Success,
 		Info: "success",
 		Data: goods,
 	}
 	ctx.JSON(http.StatusOK, res)
+}
+
+func HandleRandom(ctx *gin.Context) {
+	var (
+		param req.PageReqDTO
+		res   resp.PageRespDTO
+	)
+
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		res = resp.PageRespDTO{
+			Code: constant.ParamError,
+			Info: "参数错误: " + err.Error(),
+		}
+		ctx.JSON(http.StatusOK, res)
+		return
+	}
+
+	goods, err := rpc.GetRandomSku(ctx.Request.Context(), param.PageSize, param.PageNum)
+	if err != nil {
+		res = resp.PageRespDTO{
+			Code: constant.ServerError,
+			Info: "服务器内部错误",
+		}
+		ctx.JSON(http.StatusOK, res)
+		return
+
+	}
+
+	if goods == nil {
+		res = resp.PageRespDTO{
+			Code: constant.Success,
+			Info: "无数据",
+			Data: []*model.GoodsSku{},
+		}
+		ctx.JSON(http.StatusOK, res)
+		return
+	}
+
+	res = resp.PageRespDTO{
+		Code: constant.Success,
+		Info: "success",
+		Data: goods,
+	}
+	ctx.JSON(http.StatusOK, res)
+
 }
