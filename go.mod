@@ -6,6 +6,7 @@ require (
 	github.com/bytedance/sonic v1.12.10
 	github.com/cloudwego/gopkg v0.1.4
 	github.com/cloudwego/kitex v0.12.3
+	github.com/cloudwego/kitex/pkg/protocol/bthrift v0.0.0-20250305085435-b9f0ab77c7ba
 	github.com/gin-contrib/cors v1.7.3
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-zookeeper/zk v1.0.4
@@ -45,7 +46,6 @@ require (
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/gls v0.0.0-20220109145502-612d0167dce5 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
