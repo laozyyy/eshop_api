@@ -6,7 +6,6 @@ import (
 	"eshop_api/kitex_gen/eshop/home/goodsservice"
 	"eshop_api/log"
 	"eshop_api/model"
-
 	"github.com/cloudwego/kitex/client"
 )
 
@@ -14,6 +13,7 @@ var goodsClient goodsservice.Client
 
 func init() {
 	var err error
+	//goodsClient, err = goodsservice.NewClient("hello", client.WithHostPorts("localhost:8888"))
 	goodsClient, err = goodsservice.NewClient("hello", client.WithHostPorts("117.72.72.114:20001"))
 	if err != nil {
 		log.Errorf("error: %v", err)
@@ -31,7 +31,7 @@ func GetOneSku(ctx context.Context, sku string) (*model.GoodsSku, error) {
 	}
 
 	return &model.GoodsSku{
-		Sku:       resp.Sku.GoodsId,
+		Sku:       resp.Sku.Sku,
 		GoodsID:   resp.Sku.GoodsId,
 		TagID:     resp.Sku.TagId,
 		Name:      resp.Sku.Name,
@@ -60,7 +60,7 @@ func MGetSku(ctx context.Context, TagId string, pageSize int, pageNum int) ([]*m
 	result := make([]*model.GoodsSku, 0, len(resp.Sku))
 	for _, sku := range resp.Sku {
 		result = append(result, &model.GoodsSku{
-			Sku:       sku.GoodsId,
+			Sku:       sku.Sku,
 			GoodsID:   sku.GoodsId,
 			TagID:     sku.TagId,
 			Name:      sku.Name,
@@ -90,7 +90,7 @@ func GetRandomSku(ctx context.Context, pageSize int, pageNum int) ([]*model.Good
 	result := make([]*model.GoodsSku, 0, len(resp.Sku))
 	for _, sku := range resp.Sku {
 		result = append(result, &model.GoodsSku{
-			Sku:       sku.GoodsId,
+			Sku:       sku.Sku,
 			GoodsID:   sku.GoodsId,
 			TagID:     sku.TagId,
 			Name:      sku.Name,

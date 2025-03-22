@@ -42,3 +42,21 @@ func TestMGetSku(t *testing.T) {
 	}
 
 }
+
+func TestOneSku(t *testing.T) {
+	type args struct {
+		ctx      context.Context
+		pageSize int
+		pageNum  int
+		sku      string
+	}
+	a := args{
+		ctx:      context.Background(),
+		pageSize: 10,
+		pageNum:  0,
+		sku:      "155863",
+	}
+	got, _ := GetOneSku(a.ctx, a.sku)
+	log.Infof("result: %+v", got)
+
+}

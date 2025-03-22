@@ -28,7 +28,7 @@ struct GetOneSkuResponse {
 }
 
 struct Sku {
-    1: string sellerId,
+    1: string sku,
     2: string goodsId,
     3: string tagId,
     4: string name,
@@ -39,4 +39,4 @@ struct Sku {
     9: string sellerName
 }
 
-//kitex -module eshop_api main.thrift
+//kitex -module eshop_api idl/main.thrift
