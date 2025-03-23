@@ -21,4 +21,10 @@ func initRouter(r *gin.Engine) {
 		main.POST("/mget", handler.HandleMGetSku)
 		main.POST("/random", handler.HandleRandom)
 	}
+	cart := r.Group("/api/v1/cart")
+	{
+		cart.POST("/add", handler.HandleAddItem)
+		cart.POST("/mget", handler.HandleCartGetList)
+		//cart.POST("/random", handler.HandleRandom)
+	}
 }

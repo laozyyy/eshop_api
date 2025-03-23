@@ -46,3 +46,7 @@ type PageRespDTO struct {
 	Info string            `json:"info"`
 	Data []*model.GoodsSku `json:"data,omitempty"`
 }
+type AddItemRespDTO struct {
+	Code int    `json:"code"`
+	Info string `json:"info"`
+}
