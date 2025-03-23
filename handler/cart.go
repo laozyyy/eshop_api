@@ -33,14 +33,17 @@ func HandleCartGetList(ctx *gin.Context) {
 		return
 	}
 
-	//// RPC 调用
-	//resp := rpc.GetList(req)
-	//
-	//ctx.JSON(200, gin.H{
-	//    "page_size": resp.GetPageSize(),
-	//    "page_num":  resp.GetPageNum(),
-	//    "is_end":    resp.GetIsEnd(),
-	//    "items":     resp.GetItems(),
-	//    "info":      resp.GetInfo(),
-	//})
+	// RPC 调用
+	items, err := rpc.GetList(ctx, req)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return
+	}
+
+	response := &resp.CartListRespDTO{
+		Code: 200,
+		Info: "success",
+		Data: items,
+	}
+	ctx.JSON(200, response)
 }

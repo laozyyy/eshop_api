@@ -42,3 +42,17 @@ func AddItem(ctx *gin.Context, req req.AddItemRequestDTO) (*resp.AddItemRespDTO,
 	}
 	return ret, nil
 }
+
+func GetList(ctx *gin.Context, request cart.PageRequest) ([]*cart.CartItem, error) {
+	r := &cart.PageRequest{
+		PageSize: request.PageSize,
+		PageNum:  request.PageNum,
+		Uid:      request.Uid,
+	}
+	list, err := cartService.GetList(ctx, r)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return nil, err
+	}
+	return list.Items, nil
+}

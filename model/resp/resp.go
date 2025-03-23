@@ -1,6 +1,9 @@
 package resp
 
-import "eshop_api/model"
+import (
+	"eshop_api/kitex_gen/eshop/cart"
+	"eshop_api/model"
+)
 
 type LoginRespDTO struct {
 	Code int    `json:"code"`
@@ -49,4 +52,10 @@ type PageRespDTO struct {
 type AddItemRespDTO struct {
 	Code int    `json:"code"`
 	Info string `json:"info"`
+}
+
+type CartListRespDTO struct {
+	Code int              `json:"code"`
+	Info string           `json:"info"`
+	Data []*cart.CartItem `json:"data,omitempty"`
 }
