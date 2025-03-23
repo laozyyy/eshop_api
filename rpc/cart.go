@@ -2,7 +2,7 @@ package rpc
 
 import (
 	"eshop_api/kitex_gen/eshop/cart"
-	"eshop_api/kitex_gen/eshop/cart/cartService"
+	"eshop_api/kitex_gen/eshop/cart/cartservice"
 	"eshop_api/log"
 	"eshop_api/model/req"
 	"eshop_api/model/resp"
