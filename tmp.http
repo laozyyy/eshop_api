@@ -1,0 +1,33 @@
+POST http://localhost:9000/api/v1/user/login
+Content-Type: application/json
+
+{
+  "name": "1123a1",
+  "password": "123"
+}
+###
+POST http://localhost:9000/api/v1/user/register
+Content-Type: application/json
+
+{
+"name": "1123a1",
+"password": "123"
+}
+
+###
+POST http://localhost:9000/api/v1/cart/add
+Content-Type: application/json
+
+{
+  "sku_id": "13131",
+  "quantity": 13131,
+  "uid": "afdsakflsjfl"
+}
+
+###
+
+GET http://localhost:9000/api/v1/user/get/f9c7ca1b-7995-4df4-bb2f-7b741feaae31
+###
+GET http://localhost:9000/api/v1/home/category/head
+###
+GET http://localhost:9000/api/v1/main/get_sku/261311
