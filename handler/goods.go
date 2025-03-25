@@ -138,3 +138,34 @@ func HandleRandom(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, res)
 
 }
+
+func HandleSearchGoods(ctx *gin.Context) {
+	var param req.SearchReqDTO
+	var res resp.PageRespDTO
+
+	if err := ctx.ShouldBindJSON(&param); err != nil {
+		res = resp.PageRespDTO{
+			Code: constant.ParamError,
+			Info: "参数错误: " + err.Error(),
+		}
+		ctx.JSON(http.StatusOK, res)
+		return
+	}
+
+	goods, err := rpc.SearchGoods(ctx.Request.Context(), param.Keyword, param.PageSize, param.PageNum)
+	if err != nil {
+		res = resp.PageRespDTO{
+			Code: constant.ServerError,
+			Info: "服务器内部错误",
+		}
+		ctx.JSON(http.StatusOK, res)
+		return
+	}
+
+	res = resp.PageRespDTO{
+		Code: constant.Success,
+		Info: "success",
+		Data: goods,
+	}
+	ctx.JSON(http.StatusOK, res)
+}

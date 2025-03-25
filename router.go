@@ -20,6 +20,8 @@ func initRouter(r *gin.Engine) {
 		main.GET("/get_sku/:sku", handler.HandleGetOneSku)
 		main.POST("/mget", handler.HandleMGetSku)
 		main.POST("/random", handler.HandleRandom)
+		// 在main路由组中添加
+		main.POST("/search", handler.HandleSearchGoods)
 	}
 	cart := r.Group("/api/v1/cart")
 	{

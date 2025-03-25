@@ -102,3 +102,39 @@ func GetRandomSku(ctx context.Context, pageSize int, pageNum int) ([]*model.Good
 	}
 	return result, nil
 }
+
+func SearchGoods(ctx context.Context, keyword string, pageSize int, pageNum int) ([]*model.GoodsSku, error) {
+	request := home.SearchRequest{
+		Keyword:  keyword,
+		PageSize: int32(pageSize),
+		PageNum:  int32(pageNum),
+	}
+	resp, err := goodsClient.SearchGoods(ctx, &request)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return nil, err
+	}
+
+	result := make([]*model.GoodsSku, 0, len(resp.Sku))
+	for _, sku := range resp.Sku {
+		result = append(result, &model.GoodsSku{
+			Sku:       sku.Sku,
+			GoodsID:   sku.GoodsId,
+			TagID:     sku.TagId,
+			Name:      sku.Name,
+			Price:     float64(sku.Price),
+			Spec:      sku.Spec,
+			ShowPic:   safeFirstElement(sku.ShowPic),
+			DetailPic: safeFirstElement(sku.DetailPic),
+		})
+	}
+	return result, nil
+}
+
+// 辅助函数处理空数组
+func safeFirstElement(arr []string) string {
+	if len(arr) > 0 {
+		return arr[0]
+	}
+	return ""
+}

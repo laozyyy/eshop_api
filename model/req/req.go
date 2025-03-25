@@ -26,3 +26,9 @@ type AddItemRequestDTO struct {
 	Quantity int32  `thrift:"quantity,2,required" frugal:"2,required,i32" json:"quantity"`
 	Uid      string `thrift:"uid,3" frugal:"3,default,string" json:"uid"`
 }
+
+type SearchReqDTO struct {
+	Keyword  string `json:"keyword" binding:"required"`
+	PageSize int    `json:"page_size" binding:"required"`
+	PageNum  int    `json:"page_num" binding:"required"`
+}
