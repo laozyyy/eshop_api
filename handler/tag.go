@@ -4,7 +4,6 @@ import (
 	"eshop_api/common/constant"
 	"eshop_api/log"
 	"eshop_api/model/resp"
-	"github.com/bytedance/sonic"
 	"github.com/gin-gonic/gin"
 	"github.com/go-zookeeper/zk"
 	"net/http"
@@ -39,7 +38,17 @@ func HandleGetTags(ctx *gin.Context) {
 	}
 	// 将获取到的数据（字节切片类型）解析为Config结构体
 	var config []*Config
-	err = sonic.Unmarshal(data, &config)
+	//err = sonic.Unmarshal(data, &config)
+	config = []*Config{
+		{"T73SNA", "电子产品"},
+		{"j8yi6g", "书籍教材"},
+		{"4GYSCA", "运动器材"},
+		{"FCMIjQ", "生活用品"},
+		{"SUF3zA", "服装鞋帽"},
+		{"DNc25A", "文具用品"},
+		{"nvzRAw", "交通工具"},
+		{"_u3XMw", "数码配件"},
+	}
 	if err != nil {
 		log.Errorf("error: %v", err)
 		ctx.JSON(http.StatusInternalServerError, "服务器内部错误")
