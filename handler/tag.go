@@ -31,7 +31,7 @@ func HandleGetTags(ctx *gin.Context) {
 	defer conn.Close()
 
 	// 获取配置节点的数据
-	data, _, err := conn.Get(configNodePath)
+	_, _, err = conn.Get(configNodePath)
 	if err != nil {
 		log.Errorf("error: %v", err)
 		ctx.JSON(http.StatusInternalServerError, "服务器内部错误")
