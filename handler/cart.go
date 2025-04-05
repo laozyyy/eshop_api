@@ -70,7 +70,7 @@ func HandleCartUpdate(ctx *gin.Context) {
 	ctx.JSON(200, resp.UpdateRespDTO{
 		BaseRespDTO: resp.BaseRespDTO{
 			Code: int(response.Code),
-			Info: *response.ErrStr,
+			Info: "success",
 		},
 		Price: response.Price,
 	})
