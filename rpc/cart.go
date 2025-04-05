@@ -43,7 +43,7 @@ func AddItem(ctx *gin.Context, req req.AddItemRequestDTO) (*resp.AddItemRespDTO,
 	return ret, nil
 }
 
-func GetList(ctx *gin.Context, request cart.PageRequest) ([]*cart.CartItem, error) {
+func GetList(ctx *gin.Context, request cart.PageRequest) (*cart.PageResponse, error) {
 	r := &cart.PageRequest{
 		PageSize: request.PageSize,
 		PageNum:  request.PageNum,
@@ -54,7 +54,7 @@ func GetList(ctx *gin.Context, request cart.PageRequest) ([]*cart.CartItem, erro
 		log.Errorf("error: %v", err)
 		return nil, err
 	}
-	return list.Items, nil
+	return list, nil
 }
 
 func UpdateItem(ctx *gin.Context, req req.UpdateItemRequestDTO) (*cart.UpdateResponse, error) {
