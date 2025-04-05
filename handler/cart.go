@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"eshop_api/common/constant"
 	"eshop_api/kitex_gen/eshop/cart"
 	"eshop_api/log"
 	"eshop_api/model/req"
@@ -9,7 +10,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func HandleAddItem(ctx *gin.Context) {
+func HandleCartAddItem(ctx *gin.Context) {
 	var req req.AddItemRequestDTO
 	var response *resp.AddItemRespDTO
 	if err := ctx.ShouldBind(&req); err != nil {
@@ -44,6 +45,48 @@ func HandleCartGetList(ctx *gin.Context) {
 		Code: 200,
 		Info: "success",
 		Data: items,
+	}
+	ctx.JSON(200, response)
+}
+
+func HandleCartUpdate(ctx *gin.Context) {
+	var req req.UpdateItemRequestDTO
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(400, resp.BaseRespDTO{
+			Code: constant.ParamError,
+			Info: "参数错误: " + err.Error(),
+		})
+		return
+	}
+
+	response, err := rpc.UpdateItem(ctx, req)
+	if err != nil {
+		ctx.JSON(500, resp.BaseRespDTO{
+			Code: constant.ServerError,
+			Info: "服务调用失败",
+		})
+		return
+	}
+	ctx.JSON(200, response)
+}
+
+func HandleCartDelete(ctx *gin.Context) {
+	var req req.DeleteItemRequestDTO
+	if err := ctx.ShouldBindJSON(&req); err != nil {
+		ctx.JSON(400, resp.BaseRespDTO{
+			Code: constant.ParamError,
+			Info: "参数错误: " + err.Error(),
+		})
+		return
+	}
+
+	response, err := rpc.DeleteItem(ctx, req)
+	if err != nil {
+		ctx.JSON(500, resp.BaseRespDTO{
+			Code: constant.ServerError,
+			Info: "服务调用失败",
+		})
+		return
 	}
 	ctx.JSON(200, response)
 }

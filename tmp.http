@@ -53,3 +53,23 @@ Content-Type: application/json
   "page_size": 10,
   "page_num": 1
 }
+
+### 更新商品
+POST http://localhost:9000/api/v1/cart/update
+Content-Type: application/json
+
+{
+  "sku_id": "13131",
+  "quantity": 2,
+  "selected": true,
+  "uid": "930fbafc-f9ed-458f-a1cf-768d65f8825e"
+}
+
+### 删除商品
+POST http://localhost:9000/api/v1/cart/delete
+Content-Type: application/json
+
+{
+  "skus": ["13131", "261311"],
+  "uid": "930fbafc-f9ed-458f-a1cf-768d65f8825e"
+}

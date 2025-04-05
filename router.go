@@ -25,8 +25,11 @@ func initRouter(r *gin.Engine) {
 	}
 	cart := r.Group("/api/v1/cart")
 	{
-		cart.POST("/add", handler.HandleAddItem)
+		cart.POST("/add", handler.HandleCartAddItem)
 		cart.POST("/mget", handler.HandleCartGetList)
+		// 在cart路由组中添加
+		cart.POST("/update", handler.HandleCartUpdate)
+		cart.POST("/delete", handler.HandleCartDelete)
 		//cart.POST("/random", handler.HandleRandom)
 	}
 }

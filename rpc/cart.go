@@ -56,3 +56,47 @@ func GetList(ctx *gin.Context, request cart.PageRequest) ([]*cart.CartItem, erro
 	}
 	return list.Items, nil
 }
+
+func UpdateItem(ctx *gin.Context, req req.UpdateItemRequestDTO) (*resp.BaseRespDTO, error) {
+	q := req.Quantity
+	s := req.Selected
+	r := &cart.UpdateRequest{
+		SkuId:    req.SkuId,
+		Quantity: &q,
+		Selected: &s,
+		Uid:      req.Uid,
+	}
+	res, err := cartService.UpdateItem(ctx, r)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return nil, err
+	}
+	return &resp.BaseRespDTO{
+		Code: int(res.Code),
+		Info: safeGetErrStr(res.ErrStr),
+	}, nil
+}
+
+func DeleteItem(ctx *gin.Context, req req.DeleteItemRequestDTO) (*resp.BaseRespDTO, error) {
+	r := &cart.DeleteRequest{
+		Skus: req.Skus,
+		Uid:  req.Uid,
+	}
+	res, err := cartService.DeleteItem(ctx, r)
+	if err != nil {
+		log.Errorf("error: %v", err)
+		return nil, err
+	}
+	return &resp.BaseRespDTO{
+		Code: int(res.Code),
+		Info: safeGetErrStr(res.ErrStr),
+	}, nil
+}
+
+// 辅助函数处理可选错误信息
+func safeGetErrStr(errStr *string) string {
+	if errStr != nil {
+		return *errStr
+	}
+	return "success"
+}

@@ -32,3 +32,15 @@ type SearchReqDTO struct {
 	PageSize int    `json:"page_size" binding:"required"`
 	PageNum  int    `json:"page_num" binding:"required"`
 }
+
+type UpdateItemRequestDTO struct {
+	SkuId    string `json:"sku_id" binding:"required"`
+	Quantity int32  `json:"quantity"`
+	Selected bool   `json:"selected"`
+	Uid      string `json:"uid" binding:"required"`
+}
+
+type DeleteItemRequestDTO struct {
+	Skus []string `json:"skus" binding:"required"`
+	Uid  string   `json:"uid" binding:"required"`
+}

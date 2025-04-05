@@ -59,3 +59,8 @@ type CartListRespDTO struct {
 	Info string           `json:"info"`
 	Data []*cart.CartItem `json:"data,omitempty"`
 }
+
+type BaseRespDTO struct {
+	Code int    `json:"code"`
+	Info string `json:"info"`
+}
