@@ -34,7 +34,7 @@ type SearchReqDTO struct {
 }
 
 type UpdateItemRequestDTO struct {
-	SkuId    string `json:"sku_id" binding:"required"`
+	SkuId    string `json:"sku" binding:"required"`
 	Quantity int32  `json:"quantity"`
 	Selected bool   `json:"selected"`
 	Uid      string `json:"uid" binding:"required"`
