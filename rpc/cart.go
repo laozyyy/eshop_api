@@ -57,7 +57,7 @@ func GetList(ctx *gin.Context, request cart.PageRequest) ([]*cart.CartItem, erro
 	return list.Items, nil
 }
 
-func UpdateItem(ctx *gin.Context, req req.UpdateItemRequestDTO) (*resp.BaseRespDTO, error) {
+func UpdateItem(ctx *gin.Context, req req.UpdateItemRequestDTO) (*cart.UpdateResponse, error) {
 	q := req.Quantity
 	s := req.Selected
 	r := &cart.UpdateRequest{
@@ -71,10 +71,7 @@ func UpdateItem(ctx *gin.Context, req req.UpdateItemRequestDTO) (*resp.BaseRespD
 		log.Errorf("error: %v", err)
 		return nil, err
 	}
-	return &resp.BaseRespDTO{
-		Code: int(res.Code),
-		Info: safeGetErrStr(res.ErrStr),
-	}, nil
+	return res, nil
 }
 
 func DeleteItem(ctx *gin.Context, req req.DeleteItemRequestDTO) (*resp.BaseRespDTO, error) {

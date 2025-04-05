@@ -64,3 +64,8 @@ type BaseRespDTO struct {
 	Code int    `json:"code"`
 	Info string `json:"info"`
 }
+
+type UpdateRespDTO struct {
+	BaseRespDTO
+	Price string `json:"price"`
+}
