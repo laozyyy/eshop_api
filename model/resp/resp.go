@@ -70,3 +70,19 @@ type UpdateRespDTO struct {
 	BaseRespDTO
 	Price string `json:"price"`
 }
+
+// 秒杀响应结构
+type SeckillRespDTO struct {
+	Code    int    `json:"code"`
+	Info    string `json:"info"`
+	OrderID string `json:"order_id"`
+}
+
+// 抽奖响应结构
+type LotteryRespDTO struct {
+	Code    int     `json:"code"`
+	HasWon  bool    `json:"has_won"`
+	Sku     *string `json:"sku,omitempty"`
+	Info    string  `json:"info"`
+	OrderID string  `json:"order_id"`
+}

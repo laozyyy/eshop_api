@@ -73,3 +73,22 @@ Content-Type: application/json
   "skus": ["13131", "261311"],
   "uid": "930fbafc-f9ed-458f-a1cf-768d65f8825e"
 }
+
+### 秒杀接口
+POST http://localhost:9000/api/v1/activity/seckill
+Content-Type: application/json
+
+{
+  "user_id": "930fbafc-f9ed-458f-a1cf-768d65f8825e",
+  "sku": "261311",
+  "activity_id": "ACT2023"
+}
+
+### 抽奖接口
+POST http://localhost:9000/api/v1/activity/lottery
+Content-Type: application/json
+
+{
+  "user_id": "930fbafc-f9ed-458f-a1cf-768d65f8825e",
+  "activity_id": "testtt"
+}

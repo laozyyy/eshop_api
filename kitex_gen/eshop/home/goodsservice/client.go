@@ -15,6 +15,9 @@ type Client interface {
 	GetRandomSku(ctx context.Context, req *home.PageRequest, callOptions ...callopt.Option) (r *home.PageResponse, err error)
 	MGetSku(ctx context.Context, sku *home.MGetSkuRequest, callOptions ...callopt.Option) (r *home.PageResponse, err error)
 	SearchGoods(ctx context.Context, req *home.SearchRequest, callOptions ...callopt.Option) (r *home.PageResponse, err error)
+	GetPrice(ctx context.Context, req *home.GetPriceRequest, callOptions ...callopt.Option) (r string, err error)
+	SubmitSeckillOrder(ctx context.Context, req *home.SeckillRequest, callOptions ...callopt.Option) (r *home.SeckillResponse, err error)
+	DrawLottery(ctx context.Context, req *home.LotteryRequest, callOptions ...callopt.Option) (r *home.LotteryResponse, err error)
 }
 
 // NewClient creates a client for the service defined in IDL.
@@ -64,4 +67,19 @@ func (p *kGoodsServiceClient) MGetSku(ctx context.Context, sku *home.MGetSkuRequ
 func (p *kGoodsServiceClient) SearchGoods(ctx context.Context, req *home.SearchRequest, callOptions ...callopt.Option) (r *home.PageResponse, err error) {
 	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
 	return p.kClient.SearchGoods(ctx, req)
+}
+
+func (p *kGoodsServiceClient) GetPrice(ctx context.Context, req *home.GetPriceRequest, callOptions ...callopt.Option) (r string, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.GetPrice(ctx, req)
+}
+
+func (p *kGoodsServiceClient) SubmitSeckillOrder(ctx context.Context, req *home.SeckillRequest, callOptions ...callopt.Option) (r *home.SeckillResponse, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.SubmitSeckillOrder(ctx, req)
+}
+
+func (p *kGoodsServiceClient) DrawLottery(ctx context.Context, req *home.LotteryRequest, callOptions ...callopt.Option) (r *home.LotteryResponse, err error) {
+	ctx = client.NewCtxWithCallOptions(ctx, callOptions)
+	return p.kClient.DrawLottery(ctx, req)
 }

@@ -44,3 +44,14 @@ type DeleteItemRequestDTO struct {
 	Skus []string `json:"skus" binding:"required"`
 	Uid  string   `json:"uid" binding:"required"`
 }
+
+type SeckillReqDTO struct {
+	UserID     string `json:"user_id" binding:"required"`
+	Sku        string `json:"sku" binding:"required"`
+	ActivityID string `json:"activity_id" binding:"required"`
+}
+
+type LotteryReqDTO struct {
+	UserID     string `json:"user_id" binding:"required"`
+	ActivityID string `json:"activity_id" binding:"required"`
+}

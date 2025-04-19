@@ -32,4 +32,9 @@ func initRouter(r *gin.Engine) {
 		cart.POST("/delete", handler.HandleCartDelete)
 		//cart.POST("/random", handler.HandleRandom)
 	}
+	activityGroup := r.Group("/api/v1/activity")
+	{
+		activityGroup.POST("/seckill", handler.HandleSubmitSeckill)
+		activityGroup.POST("/lottery", handler.HandleDrawLottery)
+	}
 }

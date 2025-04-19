@@ -138,3 +138,20 @@ func safeFirstElement(arr []string) string {
 	}
 	return ""
 }
+
+func SubmitSeckillOrder(ctx context.Context, userID string, sku string, activityID string) (*home.SeckillResponse, error) {
+	req := &home.SeckillRequest{
+		UserId:     userID,
+		Sku:        sku,
+		ActivityId: activityID,
+	}
+	return goodsClient.SubmitSeckillOrder(ctx, req)
+}
+
+func DrawLottery(ctx context.Context, userID string, activityID string) (*home.LotteryResponse, error) {
+	req := &home.LotteryRequest{
+		UserId:     userID,
+		ActivityId: activityID,
+	}
+	return goodsClient.DrawLottery(ctx, req)
+}
